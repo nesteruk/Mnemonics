@@ -7,7 +7,8 @@ open Types
 let cppTypes =
   [
     ("b", "bool", "false")
-    ("c", "char", "0")
+    ("by", "uint8_t", "false")
+    ("c", "char", "0") // or should be this int8_t?
     ("f", "float", "0.0f")
     ("d", "double", "0.0")
     ("i", "int32_t", "0")
