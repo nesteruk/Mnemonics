@@ -216,12 +216,13 @@ let renderReSharper() =
             t.Variables <- vars.ToArray()
             templates.Add t
           done
-        | _ -> raise <| new Exception("We don't support this few/many args")
+        | _ -> raise(Exception("We don't support this few/many args"))
       done
     done
   
   te.Template <- templates.ToArray()
 
+  // this generates old-style xml file, which might be outdated at some point
   let filename = "ReSharperMnemonics.xml"
   File.Delete(filename)
   let xs = new XmlSerializer(te.GetType())
@@ -238,7 +239,6 @@ let renderJava() =
   let kotlinDeclContext =
     [| new templateSetTemplateOption(name="KOTLIN_EXPRESSION",value=true) |]
 
-  // unverified
   let cppDeclContext =
     [| new templateSetTemplateOption(name="OC_DECLARATION_CPP", value=true) |]
 
@@ -306,7 +306,7 @@ let renderJava() =
   (***************** JAVA **********************************************)
   let ts = new templateSet()
   let templates = new List<templateSetTemplate>()
-  ts.group <- "mnemnics-java" // todo: investigate 'properietary' groups
+  ts.group <- "mnemonics-java" // todo: investigate 'properietary' groups
   let filename = ".\\jar\\templates\\" + ts.group + ".xml"
 
   // java structures

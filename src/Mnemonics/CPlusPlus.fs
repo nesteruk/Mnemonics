@@ -2,16 +2,18 @@
 
 open Types
 
+// this file is reused for both R++ and CLion
+
 let cppTypes =
   [
     ("b", "bool", "false")
     ("c", "char", "0")
     ("f", "float", "0.0f")
     ("d", "double", "0.0")
-    ("i", "int", "0")
+    ("i", "int32_t", "0")
     ("s", "std::string", "\"\"")
-    ("l", "long", "0")
-    ("u", "unsigned int", "0")
+    ("l", "int64_t", "0L")
+    ("u", "uint32_t", "0U")
   ];
 
 let cppStructureTemplates = 
@@ -21,7 +23,10 @@ let cppStructureTemplates =
       [
         Text "class "
         Constant ("CLASSNAME", "MyClass")
-        Scope [ endConstant ]
+        Scope [ 
+          Text "public:"
+          endConstant 
+        ]
         semiColon
       ]
     )
